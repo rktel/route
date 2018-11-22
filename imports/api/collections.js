@@ -3,5 +3,5 @@ import { Mongo } from 'meteor/mongo'
 export const Savia = new Mongo.Collection('savia')
 // Real Data of CLient
 export const Antapaccay = new Mongo.Collection('antapaccay')
-export const Exsapropia = new Mongo.Collection('exsapropia')
+export const Exsa = new Mongo.Collection('exsa')
 export const Induamerica = new Mongo.Collection('induamerica')
