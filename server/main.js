@@ -10,12 +10,14 @@ import { Antapaccay } from '../imports/api/collections'
 import { Exsa } from '../imports/api/collections'
 import { Induamerica } from '../imports/api/collections'
 import { Servosa } from '../imports/api/collections'
+import { Neptunia } from '../imports/api/collections'
 
 const Savia_URI = '/V17/savia'
 const Antapaccay_URI = '/V17/antapaccay'
 const Exsa_URI = '/V17/exsa'
 const Induamerica_URI = '/V17/induamerica'
 const Servosa_URI = '/V17/servosa'
+const Neptunia_URI = '/V17/neptunia'
 
 Meteor.startup(ns => {
 
@@ -51,6 +53,13 @@ Meteor.startup(ns => {
     }))
     app.post(Servosa_URI, Meteor.bindEnvironment((req, res) =>{
         Servosa.insert(req.body, (error,id) => {
+            if(!error){
+                res.sendStatus(200)
+            }
+        })
+    }))
+    app.post(Neptunia_URI, Meteor.bindEnvironment((req, res) =>{
+        Neptunia.insert(req.body, (error,id) => {
             if(!error){
                 res.sendStatus(200)
             }
