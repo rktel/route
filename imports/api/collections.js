@@ -9,3 +9,5 @@ export const Induamerica = new Mongo.Collection('induamerica')
 export const Servosa = new Mongo.Collection('servosa')
 // Agregado el 28/12/18 
 export const Neptunia = new Mongo.Collection('neptunia')
+// Agregado el 01/03/19
+export const Dinet = new Mongo.Collection('dinet')
