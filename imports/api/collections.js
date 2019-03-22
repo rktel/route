@@ -11,3 +11,5 @@ export const Servosa = new Mongo.Collection('servosa')
 export const Neptunia = new Mongo.Collection('neptunia')
 // Agregado el 01/03/19
 export const Dinet = new Mongo.Collection('dinet')
+// Agregado el 22/03/19
+export const Volvo = new Mongo.Collection('volvo')
