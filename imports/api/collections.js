@@ -13,3 +13,5 @@ export const Neptunia = new Mongo.Collection('neptunia')
 export const Dinet = new Mongo.Collection('dinet')
 // Agregado el 22/03/19
 export const Volvo = new Mongo.Collection('volvo')
+// Agregado el 05/04/19
+export const Savar = new Mongo.Collection('savar')
