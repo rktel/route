@@ -1,6 +1,6 @@
 import { print } from '../imports/tools/tools'
 
-const https = require('https')
+const axios = require('axios')
 
 const express = require('express')
 const app = express()
@@ -62,7 +62,7 @@ Meteor.startup(ns => {
     app.post(Servosa_URI, Meteor.bindEnvironment((req, res) => {
 
 
-      // ServosaToSutran(req.body)
+        ServosaToSutran(req.body)
 
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
@@ -106,31 +106,13 @@ Meteor.startup(ns => {
 
 
 function ServosaToSutran(data_) {
-
-
-    const data = JSON.stringify(data_)
-
-    const options = {
-        hostname: 'http://190.223.32.139:14555/V17/sutran',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Content-Length': data.length
-        }
-    }
-
-    const req = https.request(options, (res) => {
+    axios.post('http://190.223.32.139:14555/V17/sutran', data_)
+      .then((res) => {
         console.log(`statusCode: ${res.statusCode}`)
-
-        res.on('data', (d) => {
-            process.stdout.write(d)
-        })
-    })
-
-    req.on('error', (error) => {
+        console.log(res)
+      })
+      .catch((error) => {
         console.error(error)
-    })
+      })
 
-    req.write(data)
-    req.end()
 }
