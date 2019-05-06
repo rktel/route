@@ -62,7 +62,7 @@ Meteor.startup(ns => {
     app.post(Servosa_URI, Meteor.bindEnvironment((req, res) => {
 
 
-        ServosaToSutran(req.body)
+    //    ServosaToSutran(req.body)
 
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
