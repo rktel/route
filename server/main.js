@@ -128,5 +128,6 @@ Meteor.methods({
 });
 
 ST_Dinet.on("Sutran", data => {
+    console.log('Hello')
     axios.post('http://190.223.32.139:14555/V17/sutran', data)
 })
