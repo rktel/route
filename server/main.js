@@ -58,6 +58,7 @@ Meteor.startup(ns => {
         })
     }))
     app.post(Servosa_URI, Meteor.bindEnvironment((req, res) => {
+        console.log(req.body)
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
