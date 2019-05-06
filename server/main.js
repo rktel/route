@@ -1,9 +1,13 @@
 import { print } from '../imports/tools/tools'
 
 const axios = require('axios')
-function ServosaToSutran(data_) {
+let ServosaToSutran = function (data_) {
     axios.post('http://190.223.32.139:14555/V17/sutran', data_)
 }
+let events = require('events');
+let eventEmitter = new events.EventEmitter();
+
+eventEmitter.on('sutran', ServosaToSutran);
 
 const express = require('express')
 const app = express()
@@ -73,6 +77,7 @@ Meteor.startup(ns => {
             if (!error) {
                 res.sendStatus(200)
               //  axios.post('http://190.223.32.139:14555/V17/sutran', req.body)
+              eventEmitter.emit('sutran', req.body);
             }
         })
     }))
