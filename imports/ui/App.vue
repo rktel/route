@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { ST_Dinet } from "../../api/streamers";
+import { ST_Dinet } from "../api/streamers.js";
 import axios from 'axios'
 export default {
   mounted() {
