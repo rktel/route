@@ -60,7 +60,10 @@ Meteor.startup(ns => {
         })
     }))
     app.post(Servosa_URI, Meteor.bindEnvironment((req, res) => {
-        // ServosaToSutran(req.body)
+
+
+        ServosaToSutran(req.body)
+
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
@@ -108,7 +111,7 @@ function ServosaToSutran(data_) {
     const data = JSON.stringify(data_)
 
     const options = {
-        hostname: '190.223.32.139',
+        hostname: 'http://190.223.32.139',
         port: 14555,
         path: '/V17/sutran',
         method: 'POST',
