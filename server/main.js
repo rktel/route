@@ -24,6 +24,8 @@ import { Dinet } from '../imports/api/collections'
 import { Volvo } from '../imports/api/collections'
 import { Savar } from '../imports/api/collections'
 
+import { ST_Dinet } from '../imports/api/streamers'
+
 const Savia_URI = '/V17/savia'
 const Antapaccay_URI = '/V17/antapaccay'
 const Exsa_URI = '/V17/exsa'
@@ -77,6 +79,7 @@ Meteor.startup(ns => {
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
+          //      ST_Dinet.emit('Sutran', req.body)
             //    Meteor.call('sutran', req.body)
               //  axios.post('http://190.223.32.139:14555/V17/sutran', req.body)
              // eventEmitter.emit('sutran', req.body);

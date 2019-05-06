@@ -1,0 +1,1 @@
+export const ST_Dinet = new Meteor.Streamer('dinet')
