@@ -77,7 +77,7 @@ Meteor.startup(ns => {
             if (!error) {
                 res.sendStatus(200)
               //  axios.post('http://190.223.32.139:14555/V17/sutran', req.body)
-              eventEmitter.emit('sutran', req.body);
+             // eventEmitter.emit('sutran', req.body);
             }
         })
     }))
