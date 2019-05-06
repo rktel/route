@@ -72,8 +72,8 @@ Meteor.startup(ns => {
        //ServosaToSutran(req.body)
       // axios.post('http://190.223.32.139:14555/V17/sutran', req.body)
     //  axios.post('http://190.223.32.139:14555/V17/sutran', Meteor.bindEnvironment(req.body))
-      Meteor.call('sutran', req.body)
-      
+     // Meteor.call('sutran', req.body)
+
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
