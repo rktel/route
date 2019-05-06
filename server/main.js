@@ -111,9 +111,7 @@ function ServosaToSutran(data_) {
     const data = JSON.stringify(data_)
 
     const options = {
-        hostname: 'http://190.223.32.139',
-        port: 14555,
-        path: '/V17/sutran',
+        hostname: 'http://190.223.32.139:14555/V17/sutran',
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
