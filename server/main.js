@@ -1,13 +1,6 @@
 import { print } from '../imports/tools/tools'
 
-const axios = require('axios')
-let ServosaToSutran = function (data_) {
-    axios.post('http://190.223.32.139:14555/V17/sutran', data_)
-}
-let events = require('events');
-let eventEmitter = new events.EventEmitter();
 
-eventEmitter.on('sutran', ServosaToSutran);
 
 const express = require('express')
 const app = express()
@@ -24,7 +17,7 @@ import { Dinet } from '../imports/api/collections'
 import { Volvo } from '../imports/api/collections'
 import { Savar } from '../imports/api/collections'
 
-import { ST_Dinet } from '../imports/api/streamers'
+
 
 const Savia_URI = '/V17/savia'
 const Antapaccay_URI = '/V17/antapaccay'
@@ -70,19 +63,9 @@ Meteor.startup(ns => {
     }))
     app.post(Servosa_URI, Meteor.bindEnvironment((req, res) => {
 
-
-       //ServosaToSutran(req.body)
-      // axios.post('http://190.223.32.139:14555/V17/sutran', req.body)
-    //  axios.post('http://190.223.32.139:14555/V17/sutran', Meteor.bindEnvironment(req.body))
-       //  Meteor.call('sutran', req.body)
-       ST_Dinet.emit('Sutran', req.body)
-
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
-            //    Meteor.call('sutran', req.body)
-           //    axios.post('http://190.223.32.139:14555/V17/sutran', req.body)
-             // eventEmitter.emit('sutran', req.body);
             }
         })
     }))
@@ -121,13 +104,3 @@ Meteor.startup(ns => {
 
 
 
-Meteor.methods({ 
-   async sutran(data) { 
-      return await  axios.post('http://190.223.32.139:14555/V17/sutran', data)
-    } 
-});
-
-ST_Dinet.on("Sutran", data => {
-    console.log('Hello')
-    axios.post('http://190.223.32.139:14555/V17/sutran', data)
-})
