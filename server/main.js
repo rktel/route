@@ -66,7 +66,7 @@ Meteor.startup(ns => {
         Servosa.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
-                replicaSutran()
+               // replicaSutran()
             }
         })
     }))
