@@ -16,6 +16,7 @@ import { Neptunia } from '../imports/api/collections'
 import { Dinet } from '../imports/api/collections'
 import { Volvo } from '../imports/api/collections'
 import { Savar } from '../imports/api/collections'
+import { Minsur } from '../imports/api/collections'
 
 
 
@@ -28,6 +29,7 @@ const Neptunia_URI = '/V17/neptunia'
 const Dinet_URI = '/V17/dinet'
 const Volvo_URI = '/V17/volvo'
 const Savar_URI = '/V17/savar'
+const Minsur_URI = '/V17/minsur'
 
 Meteor.startup(ns => {
 
@@ -93,6 +95,13 @@ Meteor.startup(ns => {
     }))
     app.post(Savar_URI, Meteor.bindEnvironment((req, res) => {
         Savar.insert(req.body, (error, id) => {
+            if (!error) {
+                res.sendStatus(200)
+            }
+        })
+    }))
+    app.post(Minsur_URI, Meteor.bindEnvironment((req, res) => {
+        Minsur.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
             }
