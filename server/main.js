@@ -1,9 +1,12 @@
-const punt = require('punt')
+/**
+ * 
+ * const punt = require('punt')
 const socClient = punt.connect('10.12.1.41:5000')
 function sendData(data) {
     socClient.send(data)
 }
 
+ */
 
 const express = require('express')
 const app = express()
@@ -115,7 +118,7 @@ Meteor.startup(ns => {
     }))
     app.post(SOC_Alerts_URI, Meteor.bindEnvironment((req, res) => {
         //console.log("SOC_ALERTS:", req.body)
-        sendData(req.body)
+       // sendData(req.body)
         res.sendStatus(200)
     }))
 
