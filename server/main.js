@@ -116,7 +116,7 @@ Meteor.startup(ns => {
     }))
     app.post(SOC_Alerts_URI, Meteor.bindEnvironment((req, res) => {
         //console.log("SOC_ALERTS:", req.body)
-       // sendData(req.body)
+        sendData(req.body)
         res.sendStatus(200)
     }))
 
