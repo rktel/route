@@ -9,7 +9,7 @@ function sendData(data) {
  */
 
 var punt = require('punt');
-var a = punt.connect('10.12.1.41:5000');
+//var a = punt.connect('10.12.1.41:5000');
 // let counter = 1
 /*
 setInterval(function(){
