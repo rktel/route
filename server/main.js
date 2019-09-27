@@ -21,6 +21,7 @@ import { Dinet } from '../imports/api/collections'
 import { Volvo } from '../imports/api/collections'
 import { Savar } from '../imports/api/collections'
 import { Minsur } from '../imports/api/collections'
+import { Chingudi } from '../imports/api/collections'
 
 
 
@@ -37,6 +38,9 @@ const Minsur_URI = '/V17/minsur'
 
 // Agregado el 25/09/2019
 const SOC_Alerts_URI = '/v17/socalerts'
+// Agregado el 27/09/2019
+const Chingudi_URI = '/v17/chingudi'
+
 
 Meteor.startup(ns => {
 
@@ -119,9 +123,16 @@ Meteor.startup(ns => {
         sendData(req.body)
         res.sendStatus(200)
     }))
-
+    app.post(Chingudi_URI, Meteor.bindEnvironment((req, res) => {
+        Chingudi.insert(req.body, (error, id) => {
+            if (!error) {
+                res.sendStatus(200)
+            }
+        })
+    }))
+    
     app.listen(14555);
-
+    
 })
 
 

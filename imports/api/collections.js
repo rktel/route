@@ -17,4 +17,6 @@ export const Volvo = new Mongo.Collection('volvo')
 export const Savar = new Mongo.Collection('savar')
 // Agregado el 14/06/19
 export const Minsur = new Mongo.Collection('minsur')
+// Agregado el 27/09/19
+export const Chingudi = new Mongo.Collection('chingudi')
 
