@@ -22,6 +22,7 @@ import { Volvo } from '../imports/api/collections'
 import { Savar } from '../imports/api/collections'
 import { Minsur } from '../imports/api/collections'
 import { Chingudi } from '../imports/api/collections'
+import { Pluton } from '../imports/api/collections'
 
 
 
@@ -40,6 +41,8 @@ const Minsur_URI = '/V17/minsur'
 const SOC_Alerts_URI = '/v17/socalerts'
 // Agregado el 27/09/2019
 const Chingudi_URI = '/v17/chingudi'
+// Agregado el 11/11/2019
+const Pluton_URI = '/v17/pluton'
 
 
 Meteor.startup(ns => {
@@ -125,6 +128,13 @@ Meteor.startup(ns => {
     }))
     app.post(Chingudi_URI, Meteor.bindEnvironment((req, res) => {
         Chingudi.insert(req.body, (error, id) => {
+            if (!error) {
+                res.sendStatus(200)
+            }
+        })
+    }))
+    app.post(Pluton_URI, Meteor.bindEnvironment((req, res) => {
+        Pluton.insert(req.body, (error, id) => {
             if (!error) {
                 res.sendStatus(200)
             }
