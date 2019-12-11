@@ -21,4 +21,6 @@ export const Minsur = new Mongo.Collection('minsur')
 export const Chingudi = new Mongo.Collection('chingudi')
 // Agregado el 11/11/19
 export const Pluton = new Mongo.Collection('pluton')
+// Agregado el 11/12/19
+export const Atlantic = new Mongo.Collection('atlantic')
 
