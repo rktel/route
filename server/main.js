@@ -127,6 +127,9 @@ Meteor.startup(ns => {
     app.post(SOC_Alerts_URI, Meteor.bindEnvironment((req, res) => {
        // console.log("SOC_ALERTS:", req.body.alerts[0])
         sendData(req.body)
+        if(req.body.version==='1.3'){
+            console.log(req.body)
+        }
         res.sendStatus(200)
     }))
     app.post(Chingudi_URI, Meteor.bindEnvironment((req, res) => {
