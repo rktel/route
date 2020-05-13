@@ -53,7 +53,7 @@ const Pluton_URI = '/v17/pluton'
 // Agregado el 11/12/2019
 const Atlantic_URI = '/v17/atlantic'
 // Agregado el 13/05/2020
-const GrupoQR_URI = 'V17/grupoqr'
+const GrupoQR_URI = '/V17/grupoqr'
 
 Meteor.startup(ns => {
 
