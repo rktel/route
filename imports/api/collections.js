@@ -23,4 +23,6 @@ export const Chingudi = new Mongo.Collection('chingudi')
 export const Pluton = new Mongo.Collection('pluton')
 // Agregado el 11/12/19
 export const Atlantic = new Mongo.Collection('atlantic')
+// Agregado el 13/05/2020
+export const GrupoQR = new Mongo.Collection('grupoqr')
 

@@ -5,7 +5,7 @@ function sendData(data) {
     socClient.send(data)
 }
 var server = punt.bind('0.0.0.0:14555');
-server.on('message', function(msg){
+server.on('message', function (msg) {
     console.log(msg);
     sendData(msg)
 });
@@ -29,7 +29,7 @@ import { Minsur } from '../imports/api/collections'
 import { Chingudi } from '../imports/api/collections'
 import { Pluton } from '../imports/api/collections'
 import { Atlantic } from '../imports/api/collections'
-
+import { GrupoQR } from '../imports/api/collections'
 
 
 const Savia_URI = '/V17/savia'
@@ -43,6 +43,7 @@ const Volvo_URI = '/V17/volvo'
 const Savar_URI = '/V17/savar'
 const Minsur_URI = '/V17/minsur'
 
+
 // Agregado el 25/09/2019
 const SOC_Alerts_URI = '/v17/socalerts'
 // Agregado el 27/09/2019
@@ -51,7 +52,8 @@ const Chingudi_URI = '/v17/chingudi'
 const Pluton_URI = '/v17/pluton'
 // Agregado el 11/12/2019
 const Atlantic_URI = '/v17/atlantic'
-
+// Agregado el 13/05/2020
+const GrupoQR_URI = 'V17/grupoqr'
 
 Meteor.startup(ns => {
 
@@ -130,7 +132,7 @@ Meteor.startup(ns => {
         })
     }))
     app.post(SOC_Alerts_URI, Meteor.bindEnvironment((req, res) => {
-       // console.log("SOC_ALERTS:", req.body.alerts[0])
+        // console.log("SOC_ALERTS:", req.body.alerts[0])
         sendData(req.body)
         res.sendStatus(200)
     }))
@@ -155,9 +157,15 @@ Meteor.startup(ns => {
             }
         })
     }))
-    
+    app.post(GrupoQR_URI, Meteor.bindEnvironment((req, res) => {
+        GrupoQR.insert(req.body, (error, id) => {
+            if (!error) {
+                res.sendStatus(200)
+            }
+        })
+    }))
     app.listen(14555);
-    
+
 })
 
 
