@@ -211,25 +211,25 @@ Meteor.startup(ns => {
                     }
                 };
                 
-                const req = http.request(options, (res) => {
+                const req_ = http.request(options, (res_) => {
                     // console.log(`STATUS: ${res.statusCode}`);
                     // console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
                     // res.setEncoding('utf8');
-                    res.on('data', (chunk) => {
+                    res_.on('data', (chunk) => {
                         console.log(`BODY: ${chunk}`);
                     });
-                    res.on('end', () => {
+                    res_.on('end', () => {
                         console.log('No more data in response.');
                     });
                 });
                 
-                req.on('error', (e) => {
+                req_.on('error', (e) => {
                     console.error(`problem with request: ${e.message}`);
                 });
                 
                 // Write data to request body
-                req.write(postData);
-                req.end();
+                req_.write(postData);
+                req_.end();
                 /**END */
 
                 res.sendStatus(200)
