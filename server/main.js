@@ -154,18 +154,33 @@ Meteor.startup(ns => {
         Atlantic.insert(req.body, (error, id) => {
             if (!error) {
                 let data = req.body.events[0]
+
                 let isodate = data.created
                 let date = new Date(isodate)
-                console.log(date)
-                console.log(date.getTime() / 1000)
+                //console.log(date)
+                console.log('device_timestamp:',date.getTime() / 1000)
 
-                console.log(data.created)
-                console.log(data.location.latitude)
-                console.log(data.location.longitude)
-                console.log(data.location.speed)
-                console.log(data.inputs.digital)
-                console.log(data.device)
-                console.log(data.vehicle)
+                //console.log(data.created)
+                console.log('lat:',data.location.latitude)
+                console.log('lng:',data.location.longitude)
+                console.log('velocity:',data.location.speed)
+
+                let digitals = data.inputs.digital
+                let ignitions = digitals.filter(item=>{
+                    return item.type == 13
+                  })
+                if(ignitions.length == 1){
+                    let ignition = ignitions[0]
+                    if(ignition.value == true)
+                    console.log('engine:', 1)
+                    else
+                    console.log('engine:', 0)
+                }
+                //console.log(data.inputs.digital)
+
+
+                console.log('imei:',data.device)
+                console.log('plate:',data.vehicle)
 
                 res.sendStatus(200)
             }
