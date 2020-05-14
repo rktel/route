@@ -154,6 +154,11 @@ Meteor.startup(ns => {
         Atlantic.insert(req.body, (error, id) => {
             if (!error) {
                 let data = req.body.events[0]
+                let isodate = data.created
+                let date = new Date(isodate)
+                console.log(date)
+                console.log(date.getTime() / 1000)
+
                 console.log(data.created)
                 console.log(data.location.latitude)
                 console.log(data.location.longitude)
@@ -161,7 +166,7 @@ Meteor.startup(ns => {
                 console.log(data.inputs.digital)
                 console.log(data.device)
                 console.log(data.vehicle)
-                
+
                 res.sendStatus(200)
             }
         })
