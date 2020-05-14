@@ -153,7 +153,15 @@ Meteor.startup(ns => {
     app.post(Atlantic_URI, Meteor.bindEnvironment((req, res) => {
         Atlantic.insert(req.body, (error, id) => {
             if (!error) {
-                console.log(req.body.events[0])
+                let data = req.body.events[0]
+                console.log(data.created)
+                console.log(data.location.latitude)
+                console.log(data.location.longitude)
+                console.log(data.location.speed)
+                console.log(data.inputs.digital)
+                console.log(data.device)
+                console.log(data.vehicle)
+                
                 res.sendStatus(200)
             }
         })
