@@ -182,6 +182,56 @@ Meteor.startup(ns => {
                 console.log('imei:',data.device)
                 console.log('plate:',data.vehicle)
 
+                /**INI */
+                const http = require('http')
+                const HOST = 'dev.carcool.pe'
+                const PATH = '/gps-rest/api/gps-tracker'
+                const METHOD = 'POST'
+                const TOKEN = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6ImZhYTk2NWJiNzVkZGUwZDUxNTBmMjk0NDA4NjhmZjA0OWZkYjcwYjE5NmE3Nzc0YmZhZTE5ZWMzZWE1NjQ0MjhhMzMyMjUyOWZhNjNjYmNjIn0.eyJhdWQiOiIxIiwianRpIjoiZmFhOTY1YmI3NWRkZTBkNTE1MGYyOTQ0MDg2OGZmMDQ5ZmRiNzBiMTk2YTc3NzRiZmFlMTllYzNlYTU2NDQyOGEzMzIyNTI5ZmE2M2NiY2MiLCJpYXQiOjE1ODg4MjAyMjksIm5iZiI6MTU4ODgyMDIyOSwiZXhwIjoxNjIwMzU2MjI5LCJzdWIiOiIxNyIsInNjb3BlcyI6W119.lKJ7kMTTjVQ29PAJTcHZPiK_7jNnRXujHcVYdmMyJXFk46pOWsaaAd1KdDe4zy9moKoOgPlD41DixK1OV9B5z7tuD7ZVlE3wSLzn86GDHFkXkvY-IvNrJjnMKp4pKKXrYDD5uWQbtpqXyBuX8wcYfv3LUlZEKTrgaQ8eLzvO5Kj8j_z8WiaCvy4RTAK7BEpVmZa3EV8tvTduTq4qkBL-kqn8ZQIDIQ1bLhtnmmCpKjbz1JekbMKzrVkZarJZwbenwUzY6cJB-unMOO0dEhxTr3zqww7J0xxbxZTwwK76bgi0N_C__E6sEE_Ohg3DLRZrdiCLHIj1BtnomWJpKQft8Bu87kbp_IwQ9dTao3bIkEhC8dWpieJ8g-UzqTMzKZOhTe3hE3iDEXLzvfURhRDtiU4QBHSzF0nGc2cKZTKZXw8n1t0_F_AHRv2HJFNXcLzIAZx_eCMhyuI4i3jfjzYNu8293gfQTe7rsEt8ssagH6gaiHqObpC6qGdYN9-OBo0ZmSlTVsPn9LSAP_RyhecAP9C36S7G3mp9vM29CY0HJZ3HVNvZYnqsDj9iS45jNnnOC8ndcf4ERFDUaGlFJXseWgDR_Nrx0_Sw_KOhGVHzJXX-Z_KhgtYRj4s1jZQDuU0TgNK6MZwtyni-NZhvipD8tRyS8kh-XTZw1zy551EWVvo'
+                const postData = JSON.stringify(
+                    {
+                        "lng": "-78.494842",
+                        "lat": "-7.144642",
+                        "imei": "145781",
+                        "plate": "D2Q793",
+                        "velocity": 51,
+                        "engine": 1,
+                        "device_timestamp": 1589425765
+                    }
+                );
+                
+                const options = {
+                    host: HOST,
+                    path: PATH,
+                    method: METHOD,
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Content-Length': postData.length,
+                        'Authorization': 'Bearer ' + TOKEN
+                    }
+                };
+                
+                const req = http.request(options, (res) => {
+                    // console.log(`STATUS: ${res.statusCode}`);
+                    // console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+                    // res.setEncoding('utf8');
+                    res.on('data', (chunk) => {
+                        console.log(`BODY: ${chunk}`);
+                    });
+                    res.on('end', () => {
+                        console.log('No more data in response.');
+                    });
+                });
+                
+                req.on('error', (e) => {
+                    console.error(`problem with request: ${e.message}`);
+                });
+                
+                // Write data to request body
+                req.write(postData);
+                req.end();
+                /**END */
+
                 res.sendStatus(200)
             }
         })
