@@ -181,12 +181,16 @@ Meteor.startup(ns => {
                 })
                 if (ignitions.length == 1) {
                     let ignition = ignitions[0]
-                    if (ignition.value == true)
-                        //console.log('engine:', 1)
+                    if (ignition.value == true) {
+                        console.log('engine:', 1)
                         sendDataToCoolcar(data.location.longitude, data.location.latitude, data.device, data.vehicle, data.location.speed, 1, date, TOKEN_GRUPO_QR)
-                    else
-                        // console.log('engine:', 0)
+                    }
+
+                    else {
+                        console.log('engine:', 0)
                         sendDataToCoolcar(data.location.longitude, data.location.latitude, data.device, data.vehicle, data.location.speed, 0, date, TOKEN_GRUPO_QR)
+                    }
+
                 }
                 //console.log(data.inputs.digital)
 
