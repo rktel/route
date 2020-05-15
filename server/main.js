@@ -162,6 +162,8 @@ Meteor.startup(ns => {
     app.post(Atlantic_URI, Meteor.bindEnvironment((req, res) => {
         Atlantic.insert(req.body, (error, id) => {
             if (!error) {
+
+                  /**INI */
                 let data = req.body.events[0]
 
                 let isodate = data.created
@@ -192,13 +194,8 @@ Meteor.startup(ns => {
                     }
 
                 }
-                //console.log(data.inputs.digital)
-
-
-
-                /**INI */
-
-                /**END */
+            
+            /**END */
 
                 res.sendStatus(200)
             }
