@@ -180,12 +180,18 @@ Meteor.startup(ns => {
                  let isodate = data.created
                  let date = new Date(isodate)
                  date = date.getTime() / 1000
- 
+                 let mobile = data.device
+
+                 mobile = mobile.match(/\d+/g); 
+
+                 
+
+
                  console.log('device_timestamp:', date)
                  console.log('lat:', data.location.latitude)
                  console.log('lng:', data.location.longitude)
                  console.log('velocity:', data.location.speed)
-                 console.log('imei:', data.device)
+                 console.log('imei:', mobile[0])
                  console.log('plate:', data.vehicle)
  
                  let digitals = data.inputs.digital
@@ -196,12 +202,12 @@ Meteor.startup(ns => {
                      let ignition = ignitions[0]
                      if (ignition.value == true) {
                          console.log('engine:', 1)
-                         sendDataToCoolcar(data.location.longitude, data.location.latitude, data.device, data.vehicle, data.location.speed, 1, date, TOKEN_GRUPO_QR)
+                         sendDataToCoolcar(data.location.longitude, data.location.latitude, mobile[0], data.vehicle, data.location.speed, 1, date, TOKEN_GRUPO_QR)
                      }
  
                      else {
                          console.log('engine:', 0)
-                         sendDataToCoolcar(data.location.longitude, data.location.latitude, data.device, data.vehicle, data.location.speed, 0, date, TOKEN_GRUPO_QR)
+                         sendDataToCoolcar(data.location.longitude, data.location.latitude, mobile[0], data.vehicle, data.location.speed, 0, date, TOKEN_GRUPO_QR)
                      }
  
                  }
