@@ -3,7 +3,7 @@ const http = require('https')
 
 // const HOST_CARCOOL = 'dev.carcool.pe'
 // const PATH_CARCOOL = '/gps-rest/api/gps-tracker'
-const HOST_CARCOOL = 'gps-api.carcool.pe'
+const HOST_CARCOOL = 'gps-api.carcool.pe/'
 const PATH_CARCOOL = ''
 const METHOD_CARCOOL = 'POST'
 /**TOken DEV */
