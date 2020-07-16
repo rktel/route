@@ -25,4 +25,6 @@ export const Pluton = new Mongo.Collection('pluton')
 export const Atlantic = new Mongo.Collection('atlantic')
 // Agregado el 13/05/2020
 export const GrupoQR = new Mongo.Collection('grupoqr')
+// Agregado el 15/07/2020
+export const Esmeralda = new Mongo.Collection('esmeralda')
 

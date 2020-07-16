@@ -44,7 +44,7 @@ import { Chingudi } from '../imports/api/collections'
 import { Pluton } from '../imports/api/collections'
 import { Atlantic } from '../imports/api/collections'
 import { GrupoQR } from '../imports/api/collections'
-
+import { Esmeralda } from '../imports/api/collections'
 
 const Savia_URI = '/V17/savia'
 const Antapaccay_URI = '/V17/antapaccay'
@@ -68,6 +68,9 @@ const Pluton_URI = '/v17/pluton'
 const Atlantic_URI = '/v17/atlantic'
 // Agregado el 13/05/2020
 const GrupoQR_URI = '/V17/grupoqr'
+// Agregado el 15/07/2020
+const Esmeralda_URI = '/V17/esmeralda'
+
 
 Meteor.startup(ns => {
 
@@ -174,17 +177,17 @@ Meteor.startup(ns => {
     app.post(GrupoQR_URI, Meteor.bindEnvironment((req, res) => {
         GrupoQR.insert(req.body, (error, id) => {
             if (!error) {
-                 /**INI */
-                 let data = req.body.events[0]
+                /**INI */
+                let data = req.body.events[0]
 
-                 let isodate = data.created
-                 let date = new Date(isodate)
-                 date = date.getTime() / 1000
-                 let mobile = data.device
+                let isodate = data.created
+                let date = new Date(isodate)
+                date = date.getTime() / 1000
+                let mobile = data.device
 
-                 mobile = mobile.match(/\d+/g); 
+                mobile = mobile.match(/\d+/g);
 
-                 
+
 
 
                 //  console.log('device_timestamp:', date)
@@ -193,27 +196,36 @@ Meteor.startup(ns => {
                 //  console.log('velocity:', data.location.speed)
                 //  console.log('imei:', mobile[0])
                 //  console.log('plate:', data.vehicle)
- 
-                 let digitals = data.inputs.digital
-                 let ignitions = digitals.filter(item => {
-                     return item.type == 13
-                 })
-                 if (ignitions.length == 1) {
-                     let ignition = ignitions[0]
-                     if (ignition.value == true) {
-                         //console.log('engine:', 1)
-                         sendDataToCoolcar(data.location.longitude, data.location.latitude, mobile[0], data.vehicle, data.location.speed, 1, date, TOKEN_GRUPO_QR)
-                     }
- 
-                     else {
-                         //console.log('engine:', 0)
-                         sendDataToCoolcar(data.location.longitude, data.location.latitude, mobile[0], data.vehicle, data.location.speed, 0, date, TOKEN_GRUPO_QR)
-                     }
- 
-                 }
-             
-             /**END */
 
+                let digitals = data.inputs.digital
+                let ignitions = digitals.filter(item => {
+                    return item.type == 13
+                })
+                if (ignitions.length == 1) {
+                    let ignition = ignitions[0]
+                    if (ignition.value == true) {
+                        //console.log('engine:', 1)
+                        sendDataToCoolcar(data.location.longitude, data.location.latitude, mobile[0], data.vehicle, data.location.speed, 1, date, TOKEN_GRUPO_QR)
+                    }
+
+                    else {
+                        //console.log('engine:', 0)
+                        sendDataToCoolcar(data.location.longitude, data.location.latitude, mobile[0], data.vehicle, data.location.speed, 0, date, TOKEN_GRUPO_QR)
+                    }
+
+                }
+
+                /**END */
+
+                res.sendStatus(200)
+            }
+        })
+    }))
+
+
+    app.post(Esmeralda_URI, Meteor.bindEnvironment((req, res) => {
+        Esmeralda.insert(req.body, (error, id) => {
+            if (!error) {
                 res.sendStatus(200)
             }
         })
